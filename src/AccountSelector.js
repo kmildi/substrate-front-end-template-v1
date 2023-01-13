@@ -116,7 +116,7 @@ function Main(props) {
   )
 }
 
-function BalanceAnnotation(props) {
+export function BalanceAnnotation(props) {
   const { api, currentAccount } = useSubstrateState()
   const [accountBalance, setAccountBalance] = useState(0)
 
@@ -144,7 +144,7 @@ function BalanceAnnotation(props) {
   ) : null
 }
 
-export default function AccountSelector(props) {
+export function AccountSelector(props) {
   const { api, keyring } = useSubstrateState()
   return keyring.getPairs && api.query ? <Main {...props} /> : null
 }

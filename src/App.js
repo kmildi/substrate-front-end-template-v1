@@ -7,6 +7,7 @@ import {
   Grid,
   Sticky,
   Message,
+  Card,
 } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 
@@ -14,7 +15,7 @@ import { SubstrateContextProvider, useSubstrateState } from './substrate-lib'
 import { DeveloperConsole } from './substrate-lib/components'
 import bgImage from "/public/assets/qrucial_background.png"
 
-import AccountSelector from './AccountSelector'
+import { AccountSelector, BalanceAnnotation } from './AccountSelector'
 import Balances from './Balances'
 import BlockNumber from './BlockNumber'
 import Events from './Events'
@@ -101,7 +102,17 @@ function Main() {
             </Container>
             }></Route>
           <Route exact path='/balances' element={<Container>< Balances /></Container>}></Route>
-          <Route exact path='/transfer' element={<Container>< Transfer /></Container>}></Route>
+          <Route exact path='/transfer' element={
+            <Container>
+              <Card>
+                <Card.Content>
+                  <Card.Header>Current balance</Card.Header>
+                  <BalanceAnnotation />
+                </Card.Content>
+              </Card>
+              < Transfer />
+            </Container>}>
+          </Route>
         </Routes>
       </BrowserRouter>
       <DeveloperConsole />
