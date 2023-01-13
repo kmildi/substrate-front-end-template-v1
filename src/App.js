@@ -1,4 +1,5 @@
 import React, { createRef } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {
   Container,
   Dimmer,
@@ -11,6 +12,7 @@ import 'semantic-ui-css/semantic.min.css'
 
 import { SubstrateContextProvider, useSubstrateState } from './substrate-lib'
 import { DeveloperConsole } from './substrate-lib/components'
+import bgImage from "/public/assets/qrucial_background.png"
 
 import AccountSelector from './AccountSelector'
 import Balances from './Balances'
@@ -58,34 +60,50 @@ function Main() {
   const contextRef = createRef()
 
   return (
-    <div ref={contextRef}>
-      <Sticky context={contextRef}>
-        <AccountSelector />
-      </Sticky>
-      <Container>
-        <Grid stackable columns="equal">
-          <Grid.Row stretched>
-            <NodeInfo />
-            <Metadata />
-            <BlockNumber />
-            <BlockNumber finalized />
-          </Grid.Row>
-          <Grid.Row stretched>
-            <Balances />
-          </Grid.Row>
-          <Grid.Row>
-            <Transfer />
-            <Upgrade />
-          </Grid.Row>
-          <Grid.Row>
-            <Interactor />
-            <Events />
-          </Grid.Row>
-          <Grid.Row>
-            <TemplateModule />
-          </Grid.Row>
-        </Grid>
-      </Container>
+    <div ref={contextRef}
+          className="wrapper" 
+          style={{ 
+            backgroundImage:`url(${bgImage})`,
+            backgroundRepeat:"no-repeat",
+            backgroundPosition: "center center",
+            backgroundSize: "cover",
+            backgroundAttachment: "fixed",
+            minHeight: "100%" }}>
+      <BrowserRouter>
+        <Sticky context={contextRef}>
+          <AccountSelector />
+        </Sticky>        
+        <Routes>
+          <Route exact path='/' element={
+            <Container>
+              <Grid stackable columns="equal">
+                <Grid.Row stretched>
+                  <NodeInfo />
+                  <Metadata />
+                  <BlockNumber />
+                  <BlockNumber finalized />
+                </Grid.Row>
+                <Grid.Row stretched>
+                  <Balances />
+                </Grid.Row>
+                <Grid.Row>
+                  <Transfer />
+                  <Upgrade />
+                </Grid.Row>
+                <Grid.Row>
+                  <Interactor />
+                  <Events />
+                </Grid.Row>
+                <Grid.Row>
+                  <TemplateModule />
+                </Grid.Row>
+              </Grid>
+            </Container>
+            }></Route>
+          <Route exact path='/balances' element={<Container>< Balances /></Container>}></Route>
+          <Route exact path='/transfer' element={<Container>< Transfer /></Container>}></Route>
+        </Routes>
+      </BrowserRouter>
       <DeveloperConsole />
     </div>
   )

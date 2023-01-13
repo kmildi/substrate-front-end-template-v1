@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import { Link } from 'react-router-dom';
 
 import {
   Menu,
@@ -54,20 +55,27 @@ function Main(props) {
       attached="top"
       tabular
       style={{
-        backgroundColor: '#fff',
-        borderColor: '#fff',
+        backgroundColor: '#f7f7f7',
+        /* borderColor: '#fff', */
+        border: 'none',
         paddingTop: '1em',
         paddingBottom: '1em',
+        width: 'fit-content',
+        marginLeft: 'auto',
+        marginRight: 'auto',
       }}
     >
       <Container>
         <Menu.Menu>
           <Image
-            src={`${process.env.PUBLIC_URL}/assets/substrate-logo.png`}
+            src={`${process.env.PUBLIC_URL}/assets/favicon_light.png`}
             size="mini"
           />
         </Menu.Menu>
         <Menu.Menu position="right" style={{ alignItems: 'center' }}>
+          <Menu.Item><Link to="/">Home</Link></Menu.Item>
+          <Menu.Item><Link to="/transfer">Transfer</Link></Menu.Item>
+          <Menu.Item><Link to="/balances">Balances</Link></Menu.Item>
           {!currentAccount ? (
             <span>
               Create an account with Polkadot-JS Extension (
@@ -101,8 +109,8 @@ function Main(props) {
             }}
             value={acctAddr(currentAccount)}
           />
-          <BalanceAnnotation />
-        </Menu.Menu>
+{/*           <BalanceAnnotation />
+ */}        </Menu.Menu>
       </Container>
     </Menu>
   )
