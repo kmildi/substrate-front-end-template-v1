@@ -141,7 +141,11 @@ export function BalanceAnnotation(props) {
       <Icon name="money" color="green" />
       {accountBalance}
     </Label>
-  ) : null
+  ) : (
+    <Label basic color="yellow">
+       No account selected
+    </Label>
+  )
 }
 
 export function AccountSelector(props) {

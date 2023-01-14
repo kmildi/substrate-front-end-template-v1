@@ -104,13 +104,15 @@ function Main() {
           <Route exact path='/balances' element={<Container>< Balances /></Container>}></Route>
           <Route exact path='/transfer' element={
             <Container>
-              <Card>
+              <Card style={{ boxShadow: "0px 1px 3px 1px #0093ff" }}>
                 <Card.Content>
                   <Card.Header>Current balance</Card.Header>
                   <BalanceAnnotation />
                 </Card.Content>
-              </Card>
-              < Transfer />
+              </Card>            
+              <Container id="transferContainer">
+                < Transfer />
+              </Container>
             </Container>}>
           </Route>
         </Routes>
