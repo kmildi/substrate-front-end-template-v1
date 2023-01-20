@@ -13,14 +13,6 @@
   color: #0093FF;
 }
 
-* {
-  font-family: 'Comfortaa' !important;
-}
-
-i.icon {
-  font-family: 'Icons' !important;
-}
-
 #transferContainer .labeled input {
   border: 1px solid #0093FF !important;
 }
